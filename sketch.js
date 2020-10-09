@@ -1,60 +1,68 @@
-var car,wall;
+const Engine = Matter.Engine;
+const World= Matter.World;
+const Bodies = Matter.Bodies;
 
-var speed, weight;
+var engine, world;
+var box1, pig1;
+var backgroundImage;
+var dustbinImage;
+var side1;
+var dustbin1;
 
-var deformation;
+function preload() {
 
-function setup() {
-  createCanvas(1600,800);
-  car =createSprite(50, 200, 50, 50);
-
-  wall =createSprite(1500, 200, 60, height/2);
-
-  speed=random(55,90)
-  weight=random(400,1500)
-
-  car.velocityX =speed;
-}
-
-function draw() {
-  background("black");
-  
-
-
-  
-
-if(wall.x-car.x < car.width/2+wall.width/2)
-{
- 
-  car.velocityX=0;
-  var deformation=0.5 *  weight * speed* speed/22509;
-  if(deformation>180)
-  {
-      car.shapeColour=color("red");
-  }
-
-  if(deformation<180 && deformation>100)
-  {
     
-    car.shapeColour=colour("green");  
-
-  }
-
-  if(deformation<100)
-  {
-       car.shapeColour=colour("yellow");
-  }
-
+    
 
 }
 
+function setup(){
+    var canvas = createCanvas(1200,400);
+    engine = Engine.create();
+    world = engine.world;
+
+    
+    ground = new Ground(600,height,1200,20)
+
+    dustbin1 =new Dustbin(800,370,200,200)
+
+    
+
+  
+
+ 
+	
+
+	
 
 
+    
+   
+    
+    
 
+    
 
+    bird = new Bird(100,100);
 
+}
 
+function draw(){
+    background("grey");
 
+    Engine.update(engine);
+    bird.display();
+    ground.display();
+    dustbin1.display();
+    
+   
 
-  drawSprites();
+    
+    
+   
+
+    
+
+    
+    drawSprites();
 }
